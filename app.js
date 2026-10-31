@@ -49,6 +49,13 @@
     else status.hidden = true;
   }
 
+  // Hero summary: the first about paragraph, so key info leads the page
+  const heroSummary = $('[data-bind="hero-summary"]');
+  if (heroSummary) {
+    if (S.about && S.about[0]) heroSummary.textContent = S.about[0];
+    else heroSummary.remove();
+  }
+
   // Resume + contact
   const c = S.contact || {};
   bindAll('resume-link', a => { if (c.resumeFile) a.href = c.resumeFile; else a.remove(); });

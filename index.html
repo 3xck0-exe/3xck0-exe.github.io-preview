@@ -25,8 +25,8 @@
     <div class="wrap header-inner">
       <a href="#top" class="brand" data-bind="brand" aria-label="Back to top">T. Tucker</a>
       <nav class="site-nav" aria-label="Primary">
-        <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -36,8 +36,8 @@
       </button>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a>
@@ -54,9 +54,11 @@
           <p class="eyebrow"><span data-bind="title"></span><span class="eyebrow-sep" aria-hidden="true">·</span><span data-bind="location"></span></p>
           <h1 id="hero-title" class="hero-title" data-bind="hero-title"></h1>
           <p class="hero-tagline" data-bind="tagline"></p>
+          <p class="hero-summary" data-bind="hero-summary"></p>
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-dark">See the work</a>
-            <a href="#contact" class="btn btn-outline">Get in touch</a>
+            <a data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-dark">Résumé (PDF)</a>
+            <a data-bind="email-link" href="#" class="btn btn-amber">Email me</a>
+            <a data-bind="phone-link" href="#" class="btn btn-outline">Call <span data-bind="phone"></span></a>
           </div>
           <p class="status" data-bind="status"><span class="status-dot" aria-hidden="true"></span><span data-bind="status-text"></span></p>
         </div>
@@ -161,11 +163,37 @@
       <div class="wrap facts-row" data-list="facts"></div>
     </section>
 
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section experience" id="experience" aria-labelledby="experience-title">
+      <div class="wrap exp-grid">
+        <div class="exp-main">
+          <div class="section-head">
+            <p class="index">01 / Experience</p>
+            <h2 id="experience-title" class="section-title">Panel schedule</h2>
+            <p class="section-lede">Every job I've held, newest first. Each one added a circuit.</p>
+          </div>
+          <ol class="schedule" role="list" data-list="experience"></ol>
+          <a class="btn btn-dark resume-cta" data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">
+            Open full résumé (PDF)
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+        <aside class="exp-side">
+          <h3 class="side-title">Education</h3>
+          <ul class="edu-list" role="list" data-list="education"></ul>
+          <h3 class="side-title">Certifications</h3>
+          <ul class="cert-list" role="list" data-list="certifications"></ul>
+          <h3 class="side-title">Skills</h3>
+          <ul class="skill-list" role="list" data-list="skills"></ul>
+        </aside>
+      </div>
+    </section>
+
     <!-- ============ PROJECTS ============ -->
     <section class="section projects" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
         <div class="section-head">
-          <p class="index">01 / Projects</p>
+          <p class="index">02 / Projects</p>
           <h2 id="projects-title" class="section-title">Work I've had my hands on</h2>
           <p class="section-lede">School walls, shop benches and real service calls. Tap a card for the details and photos.</p>
         </div>
@@ -192,32 +220,6 @@
           </article>
         </div>
         <p class="empty" id="projects-empty" hidden>Nothing tagged that way yet — try another filter.</p>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section experience" id="experience" aria-labelledby="experience-title">
-      <div class="wrap exp-grid">
-        <div class="exp-main">
-          <div class="section-head">
-            <p class="index">02 / Experience</p>
-            <h2 id="experience-title" class="section-title">Panel schedule</h2>
-            <p class="section-lede">Every job I've held, newest first. Each one added a circuit.</p>
-          </div>
-          <ol class="schedule" role="list" data-list="experience"></ol>
-          <a class="btn btn-dark resume-cta" data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">
-            Open full résumé (PDF)
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
-        </div>
-        <aside class="exp-side">
-          <h3 class="side-title">Education</h3>
-          <ul class="edu-list" role="list" data-list="education"></ul>
-          <h3 class="side-title">Certifications</h3>
-          <ul class="cert-list" role="list" data-list="certifications"></ul>
-          <h3 class="side-title">Skills</h3>
-          <ul class="skill-list" role="list" data-list="skills"></ul>
-        </aside>
       </div>
     </section>
 
