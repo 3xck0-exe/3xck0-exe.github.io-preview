@@ -15,6 +15,7 @@
     return n;
   };
   const bindAll = (key, fn) => $$(`[data-bind="${key}"]`).forEach(fn);
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- simple text bindings ---------- */
   bindAll('name', n => { n.textContent = S.name || ''; });
@@ -28,11 +29,17 @@
   document.title = `${S.name || 'Portfolio'} — ${S.title || ''}`.replace(/ — $/, '');
   $('#year').textContent = new Date().getFullYear();
 
-  // Hero title: one word per line, last word in accent color
-  const heroTitle = $('.hero-title');
+  // Hero title: one word per line, last word in accent color, staggered rise
+  const heroTitle = $('[data-bind="hero-title"]');
   if (heroTitle) {
     heroTitle.textContent = '';
-    (S.name || '').trim().split(/\s+/).forEach(w => heroTitle.append(el('span', { class: 'word', text: w })));
+    (S.name || '').trim().split(/\s+/).forEach((w, i) => {
+      const outer = el('span', { class: 'word' });
+      const inner = el('span', { text: w });
+      inner.style.setProperty('--i', i);
+      outer.append(inner);
+      heroTitle.append(outer);
+    });
   }
 
   // Status badge
@@ -61,11 +68,34 @@
   }
 
   /* ---------- lists ---------- */
-  const facts = $('[data-list="facts"]');
-  (S.facts || []).forEach(f => facts.append(el('div', { class: 'fact' }, [
+  const factsBox = $('[data-list="facts"]');
+  (S.facts || []).forEach(f => factsBox.append(el('div', { class: 'fact' }, [
     el('div', { class: 'fact-value' }, [el('span', { text: f.value }), f.unit ? el('small', { text: f.unit }) : null]),
     el('div', { class: 'fact-label', text: f.label })
   ])));
+
+  // Count up numeric fact values once they scroll into view
+  if (!prefersReduced) {
+    const fmt = new Intl.NumberFormat('en-US');
+    $$('.fact-value > span', factsBox).forEach(span => {
+      const raw = span.textContent;
+      if (!/^\d+$/.test(raw)) return;
+      const target = parseInt(raw, 10);
+      const count = entries => entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        countObserver.unobserve(span);
+        const t0 = performance.now(), dur = 1100;
+        const tick = t => {
+          const p = Math.min((t - t0) / dur, 1);
+          span.textContent = fmt.format(Math.round(target * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick); else span.textContent = fmt.format(target);
+        };
+        requestAnimationFrame(tick);
+      });
+      const countObserver = new IntersectionObserver(count, { threshold: 0.6 });
+      countObserver.observe(span);
+    });
+  }
 
   const aboutBox = $('[data-list="about"]');
   (S.about || []).forEach(p => aboutBox.append(el('p', { text: p })));
@@ -159,6 +189,7 @@
   const projects = S.projects || [];
   const grid = $('[data-list="projects"]');
   const filtersBox = $('[data-list="filters"]');
+  const placeholder = $('#panel-placeholder');
   const tagSet = [...new Set(projects.map(p => p.category).filter(Boolean))];
   const cards = [];
 
@@ -199,6 +230,8 @@
           cd.classList.toggle('hidden', !ok);
           if (ok) shown++;
         });
+        // The panel-work placeholder only belongs to the unfiltered view
+        if (placeholder) placeholder.classList.toggle('hidden', !!tag);
         $('#projects-empty').hidden = shown > 0;
       });
       return b;
@@ -206,39 +239,86 @@
     filtersBox.append(mk('All', null), ...tagSet.map(t => mk(t, t)));
   } else filtersBox.remove();
 
-  /* ---------- modal ---------- */
+  /* ---------- modal gallery ---------- */
   const modal = $('#project-modal');
   const mImg = $('#modal-img'), mThumbs = $('#modal-thumbs'), mTitle = $('#modal-title'), mMeta = $('#modal-meta'), mDesc = $('#modal-desc'), mTags = $('#modal-tags');
+  const mPrev = $('#modal-prev'), mNext = $('#modal-next'), mCounter = $('#modal-counter'), mZoom = $('#modal-zoom');
+  const lightbox = $('#lightbox'), lbImg = $('#lightbox-img'), lbCap = $('#lightbox-cap'), lbClose = $('#lightbox-close');
   let lastFocus = null;
+  let activeImgs = [], photoIndex = 0, activeTitle = '';
+
+  function show(i) {
+    activeImgs = activeImgs.length ? activeImgs : [];
+    if (!activeImgs.length) return;
+    photoIndex = (i + activeImgs.length) % activeImgs.length;
+    mImg.classList.add('fade');
+    const src = activeImgs[photoIndex];
+    const apply = () => {
+      mImg.src = src;
+      mImg.alt = `${activeTitle} — photo ${photoIndex + 1} of ${activeImgs.length}`;
+      mImg.classList.remove('fade');
+    };
+    if (mImg.src === new URL(src, location.href).href) apply();
+    else { const pre = new Image(); pre.onload = pre.onerror = apply; pre.src = src; }
+    mCounter.textContent = `${photoIndex + 1} / ${activeImgs.length}`;
+    mPrev.disabled = mNext.disabled = activeImgs.length < 2;
+    $$('button', mThumbs).forEach((b, j) => b.setAttribute('aria-current', String(j === photoIndex)));
+  }
 
   function openProject(p) {
     lastFocus = document.activeElement;
     mTitle.textContent = p.title;
-    mMeta.textContent = p.meta || '';
+    mMeta.textContent = [p.category, p.meta].filter(Boolean).join(' · ');
     mDesc.innerHTML = '';
     ([].concat(p.description || p.summary || [])).forEach(t => mDesc.append(el('p', { text: t })));
     mTags.innerHTML = '';
     (p.tags || []).forEach(t => mTags.append(el('li', { text: t })));
-    const imgs = p.galleryImages || p.images || [];
-    const show = (i) => {
-      mImg.src = imgs[i] || '';
-      mImg.alt = `${p.title} — photo ${i + 1} of ${imgs.length}`;
-      $$('button', mThumbs).forEach((b, j) => b.setAttribute('aria-current', j === i ? 'true' : 'false'));
-    };
+    activeTitle = p.title;
+    activeImgs = p.galleryImages || p.images || [];
     mThumbs.innerHTML = '';
-    if (imgs.length > 1) imgs.forEach((src, i) => {
+    if (activeImgs.length > 1) activeImgs.forEach((src, i) => {
       const b = el('button', { type: 'button', 'aria-label': `Photo ${i + 1}` }, el('img', { src, alt: '' }));
       b.addEventListener('click', () => show(i));
       mThumbs.append(b);
     });
-    $('.modal-media').style.display = imgs.length ? '' : 'none';
+    $('.modal-media').style.display = activeImgs.length ? '' : 'none';
     show(0);
     modal.showModal();
     $('#modal-close').focus();
   }
+
   $('#modal-close').addEventListener('click', () => modal.close());
   modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
   modal.addEventListener('close', () => { if (lastFocus) lastFocus.focus(); });
+  mPrev.addEventListener('click', () => show(photoIndex - 1));
+  mNext.addEventListener('click', () => show(photoIndex + 1));
+  modal.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(photoIndex - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(photoIndex + 1); }
+  });
+
+  // Expand current photo into the full-screen lightbox (whole image, no crop)
+  mZoom.addEventListener('click', () => {
+    if (!activeImgs.length) return;
+    lbImg.src = activeImgs[photoIndex];
+    lbImg.alt = `${activeTitle} — photo ${photoIndex + 1} of ${activeImgs.length}`;
+    lbCap.textContent = `${activeTitle} · photo ${photoIndex + 1} of ${activeImgs.length}`;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  });
+  const closeLightbox = () => { lightbox.hidden = true; document.body.style.overflow = ''; };
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+    if (!lightbox.hidden && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      e.preventDefault();
+      show(e.key === 'ArrowLeft' ? photoIndex - 1 : photoIndex + 1);
+      lbImg.src = activeImgs[photoIndex];
+      lbCap.textContent = `${activeTitle} · photo ${photoIndex + 1} of ${activeImgs.length}`;
+    }
+  });
 
   /* ---------- interactive 3-way circuit ---------- */
   const sw1 = $('#sw1'), sw2 = $('#sw2'), lamp = $('#lamp'), lampState = $('#lamp-state'), hint = $('#circuit-hint');
@@ -286,9 +366,23 @@
   }, { rootMargin: '-40% 0px -55% 0px' });
   ['projects', 'experience', 'about', 'contact'].forEach(id => { const s = document.getElementById(id); if (s) spy.observe(s); });
 
+  /* ---------- scroll progress bar ---------- */
+  const bar = $('#progress-bar');
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      ticking = false;
+    });
+  }, { passive: true });
+
   /* ---------- scroll reveals ---------- */
-  const revealTargets = [...$$('.section-head'), ...$$('.project'), ...$$('.ckt'), ...$$('.about-visual'), ...$$('.exp-side'), ...$$('.contact-main'), ...$$('.contact-side')];
-  revealTargets.forEach((n, i) => { n.classList.add('reveal'); n.style.transitionDelay = `${Math.min((i % 6) * 60, 300)}ms`; });
+  const revealTargets = [...$$('.section-head'), ...$$('.project'), ...$$('.ckt'), ...$$('.about-visual'), ...$$('.exp-side'), ...$$('.contact-main'), ...$$('.contact-side'), ...$$('.fact')];
+  revealTargets.forEach((n, i) => { n.classList.add('reveal'); n.style.transitionDelay = `${Math.min((i % 6) * 70, 350)}ms`; });
   const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.12 });
   revealTargets.forEach(n => ro.observe(n));
 })();
