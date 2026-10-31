@@ -297,22 +297,24 @@
     if (e.key === 'ArrowRight') { e.preventDefault(); show(photoIndex + 1); }
   });
 
-  // Expand current photo into the full-screen lightbox (whole image, no crop)
+  // Expand current photo into the full-screen lightbox (whole image, no crop).
+  // A <dialog> is required so it can stack above the project modal's top layer.
   mZoom.addEventListener('click', () => {
     if (!activeImgs.length) return;
     lbImg.src = activeImgs[photoIndex];
     lbImg.alt = `${activeTitle} — photo ${photoIndex + 1} of ${activeImgs.length}`;
     lbCap.textContent = `${activeTitle} · photo ${photoIndex + 1} of ${activeImgs.length}`;
-    lightbox.hidden = false;
     document.body.style.overflow = 'hidden';
+    lightbox.showModal();
     lbClose.focus();
   });
-  const closeLightbox = () => { lightbox.hidden = true; document.body.style.overflow = ''; };
+  const closeLightbox = () => { if (lightbox.open) lightbox.close(); };
   lbClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  lightbox.addEventListener('close', () => { document.body.style.overflow = ''; });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
-    if (!lightbox.hidden && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+    if (!lightbox.open) return;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
       e.preventDefault();
       show(e.key === 'ArrowLeft' ? photoIndex - 1 : photoIndex + 1);
       lbImg.src = activeImgs[photoIndex];
