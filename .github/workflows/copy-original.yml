@@ -1,0 +1,79 @@
+name: Copy original portfolio
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/copy-original.yml'
+permissions:
+  contents: write
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and verify original files
+        shell: python
+        run: |
+          import hashlib, pathlib, urllib.request
+          manifest = '''
+          .nojekyll e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+          README.md 306ca97e7dc6075f33ab43ba0106116b6ac2462d
+          app.js 5b7b832d9f21b695c11894bf39626be26b4fceff
+          base.css afd1bdeff32cde129ca5c81e6d8f1014f3389a41
+          content.js 0ac7c2fc7e1f49a87c76aa0d8bdce56b46e1c6b9
+          index.html 9955446a3ee88209bda0e5306355d17786b2c5b1
+          style.css 5aa57cc3e891670c688c35f8c11d3d9e284d3e09
+          assets/Tristan-Tucker-Resume.pdf c2860cd54162b292660a51229e780b547406f2e7
+          assets/favicon.svg 7c7379def6b0b222df3b1fbfc3e45342523839c9
+          assets/img/IMG_0433.jpeg b0f77de05e1ccd30bac87d32161dd612b72ffb84
+          assets/img/IMG_0518.jpeg 772561195e73362f0926c0d65d9a41d6bf3726b2
+          assets/img/IMG_1046.jpeg 169c737486f0a1e4bd6660e50dffad7a38053305
+          assets/img/IMG_1110.jpeg 422f51cb5350036bb3fec262c343745aa90603f6
+          assets/img/IMG_1151.jpeg f39f9852203e4648014e2a5132f445d022852cfb
+          assets/img/IMG_2118.jpeg 5a349ea0cb5a53559ef985154306fc436598d68d
+          assets/img/IMG_2205.jpeg 7cd243b140a2ae2b235e1f45e55163150c0cd591
+          assets/img/IMG_2220.jpeg 89f16a058a2e89a478561f157f186c6d51b85b88
+          assets/img/IMG_2257.jpeg 5bae28980e3b6986664e75dd46c002ff0fedacb3
+          assets/img/IMG_2347.jpeg b67b6c6ea1c9906941d69adb2042a6390039a5df
+          assets/img/IMG_3288.jpeg d9aa2123f22264e4b417f44bc8a056c8f82c732f
+          assets/img/IMG_3290.jpeg c81b5813c79ef550dac7e9d36e331762092f8de3
+          assets/img/IMG_3407.jpeg f7becf85687ec8f6a2dab719dbe617bc364ed867
+          assets/img/IMG_3445.jpeg 036ebbcc6ef4a20d5bc695068c937b7777cb033a
+          assets/img/IMG_3446.jpeg cefcf218eb0214f03d81c5825535ca7c537e3aa5
+          assets/img/IMG_3447.jpeg 7553e17b174aa8824e8a715321a74f08a194134c
+          assets/img/project-conduit.jpg 2251de2d7c00f4b06fedab1efee053bbe9c16d3f
+          assets/img/project-diesel.jpg f48716740b4e2204bac51abe35bbe9df331653fd
+          assets/img/project-load-calc.jpg d6163329c8dc86ee564449bc9c9c4c574b670115
+          assets/img/project-switch-wall.jpg 3cbbabd5ccf817a39f018c8d9e3e4234dfc64900
+          assets/img/project-telecom.jpg 2981e7e5f51c3ec3e987e8e27fc8aea9e24f649e
+          '''
+          verified = []
+          for line in manifest.strip().splitlines():
+              name, expected = line.split()
+              if name == '.nojekyll':
+                  data = b''
+              else:
+                  url = 'https://tntelectric.pages.dev/' + name
+                  req = urllib.request.Request(url, headers={'User-Agent': 'Portfolio-Preview-Copy'})
+                  with urllib.request.urlopen(req, timeout=60) as response:
+                      data = response.read()
+              actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+              if actual != expected:
+                  raise RuntimeError('Original-file checksum mismatch: ' + name)
+              verified.append((name, data))
+          for name, data in verified:
+              path = pathlib.Path(name)
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_bytes(data)
+          print('Verified and copied', len(verified), 'original files.')
+      - name: Commit copy to preview repository only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- .nojekyll README.md app.js base.css content.js index.html style.css assets
+          if git diff --cached --quiet; then
+            echo 'Original files already match; nothing to commit.'
+          else
+            git commit -m 'Copy verified original portfolio files and all assets'
+            git push origin HEAD:main
+          fi
