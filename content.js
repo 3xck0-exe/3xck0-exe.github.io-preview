@@ -75,3 +75,15 @@ window.SITE = {
   skills: ["Electrical wiring & troubleshooting", "Low-voltage & communications systems", "Electrical code & safe practice", "Hand & power tools (SAE/Metric)", "Reading & following procedures", "Job-site & shop safety (OSHA 10)", "Mechanical aptitude", "Reliable, punctual & eager to learn"],
   certifications: ["OSHA 10", "Hot Works", "Certified PC Pro", "AP Computer Science Award"]
 };
+
+/* Preview integration: the data above stays editable; these assets finish the active preview page. */
+(() => {
+  document.documentElement.classList.add('preview-boot');
+  const css = document.createElement('link');
+  css.rel = 'stylesheet'; css.href = './preview-finish.css?v=cover-motion-v1';
+  document.head.append(css);
+  const js = document.createElement('script');
+  js.src = './preview-finish.js?v=cover-motion-v1';
+  js.onerror = () => document.documentElement.classList.remove('preview-boot');
+  document.head.append(js);
+})();
