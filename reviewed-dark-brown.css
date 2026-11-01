@@ -1,0 +1,21 @@
+/* Dark-brown palette from the reviewed preview.
+   Load after the Modern Field Notebook base stylesheet.
+   This file does not activate itself or modify the main website. */
+[data-theme="dark"] {
+  --color-bg: #211a16;
+  --color-surface: #2b221c;
+  --color-surface-2: #342920;
+  --color-surface-offset: #403126;
+  --color-text: #f5eee3;
+  --color-text-muted: #cdbfae;
+  --color-text-faint: #bdae9b;
+  --color-primary: #e9b66a;
+  --color-primary-hover: #f3ca8b;
+  --color-primary-highlight: #493521;
+  --color-text-inverse: #211a16;
+  --color-ink: #18120f;
+  --color-ink-muted: #d2c2ae;
+  --color-amber: #e9b66a;
+  --shadow-lg: 0 12px 40px rgba(10, 6, 3, .25);
+}
+.qualification-strip { color: var(--color-ink-muted); }
