@@ -29,17 +29,17 @@
         if(!p?.images?.[0]||$('.preview-cover',card))return;
         const image=$('img',card),open=$('.btn',card);if(!image||!open)return;
         image.loading='lazy';image.decoding='async';image.fetchPriority='low';image.width=800;image.height=500;
-        image.src=p.images[0];image.alt=p.title+' — original project cover';
-        const button=make('button','preview-cover');button.type='button';button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-label','Open '+p.title+' photographs and details');
+        image.src=p.images[0];image.alt=p.title+' — project cover';
+        const button=make('button','preview-cover');button.type='button';button.setAttribute('aria-haspopup','dialog');button.setAttribute('aria-label','Open '+p.title+' project details');
         image.replaceWith(button);button.append(image);
-        const count=p.galleryImages?.length;button.append(make('span','preview-cover-note',count?`Original cover · ${count} gallery photos`:'Coursework cover'));
+        const count=p.galleryImages?.length||0;button.append(make('span','preview-cover-note',`${count} ${count===1?'photo':'photos'}`));
         button.addEventListener('click',()=>open.click());
       });
       reveal($$('#project-grid .project'));
     }
     covers();new MutationObserver(covers).observe($('#project-grid'),{childList:true});
     reveal($$('.section-head,#experience-list details,.training,.about,.contact-grid,.credential'));
-    const footer=$('.footer p:nth-child(2)');if(footer)footer.textContent='Preview · Responsive media / motion v2';
+    const footer=$('.footer p:nth-child(2)');if(footer)footer.textContent='Preview · Clean labels / AC flow v3';
     const progress=make('div');progress.id='preview-progress';progress.setAttribute('aria-hidden','true');document.body.prepend(progress);let queued=false;
     function paint(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?Math.max(0,Math.min(100,scrollY/max*100)):0)+'%';queued=false;}
     addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(paint);}},{passive:true});addEventListener('resize',paint);paint();
@@ -53,7 +53,7 @@
     const modal=$('#project-dialog'),host=$('#modal-body'),zoom=make('dialog','preview-lightbox');zoom.id='preview-lightbox';zoom.setAttribute('aria-labelledby','preview-zoom-title');
     const head=make('div','modal-head'),title=make('h2'),close=make('button','iconbtn','×');title.id='preview-zoom-title';title.textContent='Project photograph';close.type='button';close.setAttribute('aria-label','Close enlarged photograph');head.append(title,close);
     const large=make('img','preview-large-image');large.width=1400;large.height=1000;large.alt='Enlarged project photograph';
-    const controls=make('div','gallery-controls'),previous=make('button','btn','← Previous'),next=make('button','btn','Next →');previous.type=next.type='button';controls.append(previous,next);zoom.append(head,large,controls);document.body.append(zoom);
+    const controls=make('div','gallery-controls'),previous=make('button','btn','Previous'),next=make('button','btn','Next');previous.type=next.type='button';controls.append(previous,next);zoom.append(head,large,controls);document.body.append(zoom);
     const currentProject=()=>S.projects.find(p=>p.title===$('#modal-title').textContent);
     const photosFor=p=>p?.galleryImages?.length?p.galleryImages:(p?.images||[]);
     function navigate(step){if(photosFor(currentProject()).length<2)return;const buttons=$$('.gallery-controls button',host),button=buttons[step<0?0:1];if(button&&!button.disabled)button.click();}
@@ -72,13 +72,51 @@
         let start=null;image.addEventListener('touchstart',e=>{start=e.touches[0].clientX;},{passive:true});image.addEventListener('touchend',e=>{if(start===null)return;const dx=e.changedTouches[0].clientX-start;if(Math.abs(dx)>55)navigate(dx<0?1:-1);start=null;},{passive:true});
       }
       if(!$('.preview-zoom',host)){
-        const button=make('button','btn preview-zoom','Enlarge photograph ↗');button.type='button';button.addEventListener('click',()=>{if(!$('.gallery-image',host)?.naturalWidth)return;syncZoom();zoom.showModal();document.body.classList.add('modal-open');close.focus();});
+        const button=make('button','btn preview-zoom','Enlarge photograph');button.type='button';button.addEventListener('click',()=>{if(!$('.gallery-image',host)?.naturalWidth)return;syncZoom();zoom.showModal();document.body.classList.add('modal-open');close.focus();});
         const anchor=$('.thumbs',host)||$('.gallery-controls',host);if(anchor)anchor.after(button);else host.append(button);
         if(!currentProject()?.galleryImages?.length)host.append(make('p','preview-cover-notice','Illustrative coursework cover — not a photograph of a completed installation.'));
       }
       if(zoom.open)syncZoom();
     }
     new MutationObserver(gallery).observe(host,{childList:true,subtree:true});
+
+    /* Clean static and dynamically generated labels without changing their controls. */
+    const arrows=/[\u2190-\u21ff\u2794\u2798-\u27be\u2934\u2935\u2b05-\u2b07](?:\uFE0F)?/gu;
+    function cleanLabel(control){
+      const walker=document.createTreeWalker(control,NodeFilter.SHOW_TEXT);let text;
+      while((text=walker.nextNode())){const before=text.nodeValue,after=before.replace(arrows,'');if(after!==before)text.nodeValue=after.replace(/[ \t]{2,}/g,' ').trim();}
+      ['aria-label','title'].forEach(attr=>{const value=control.getAttribute(attr);if(value){const next=value.replace(arrows,'').trim();if(next!==value)control.setAttribute(attr,next);}});
+    }
+    $$('button,a').forEach(cleanLabel);
+    new MutationObserver(records=>{
+      const controls=new Set();
+      records.forEach(record=>{
+        const target=record.target.nodeType===3?record.target.parentElement:record.target;
+        const control=target?.closest?.('button,a');if(control)controls.add(control);
+        record.addedNodes.forEach(node=>{if(node.nodeType===1){if(node.matches('button,a'))controls.add(node);node.querySelectorAll('button,a').forEach(n=>controls.add(n));}});
+      });
+      controls.forEach(cleanLabel);
+    }).observe(document.body,{childList:true,subtree:true,characterData:true});
+    /* One continuous overlay keeps every part of the selected closed circuit in phase. */
+    const svg=$('.diagram'),lamp=$('#lamp'),lever=$('#lever1');
+    if(svg&&lamp&&lever&&path){
+      const style=make('style');style.id='preview-ac-style';
+      style.textContent=`.diagram .active{animation:none!important;stroke-dasharray:none}.diagram .preview-flow-line{fill:none;stroke:#fff1ce;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:4 10;pointer-events:none;animation:preview-ac 1.4s ease-in-out infinite alternate}@keyframes preview-ac{from{stroke-dashoffset:0}to{stroke-dashoffset:-28}}#preview-ac-status{margin-top:.5rem;font-size:var(--label);line-height:1.5;color:#d2c2ae}@media(prefers-reduced-motion:reduce){.diagram .preview-flow-line{display:none!important;animation:none!important}}`;
+      document.head.append(style);
+      const flow=document.createElementNS('http://www.w3.org/2000/svg','path');flow.id='preview-ac-flow';flow.setAttribute('class','preview-flow-line');flow.setAttribute('aria-hidden','true');svg.append(flow);
+      const caption=make('p');caption.id='preview-ac-status';caption.setAttribute('role','status');caption.setAttribute('aria-live','polite');
+      const explanation=$('#explanation');if(explanation)explanation.after(caption);else svg.after(caption);
+      function updateFlow(){
+        const points=(lever.getAttribute('d')||'').match(/-?\d+(?:\.\d+)?/g)||[],y=Number(points[points.length-1]);
+        const closed=lamp.classList.contains('lit'),show=closed&&path.checked&&!media.matches;
+        if(y===95||y===165)flow.setAttribute('d',`M22 130H110L165 ${y}H315L370 130H422L460 130V220H22`);
+        flow.style.display=show?'':'none';
+        const message=!path.checked?'Path highlighting is off.':!closed?'Open circuit: no current-flow animation.':media.matches?'Circuit complete. Static path shown with reduced motion.':'AC flow reverses together along the complete path. Animation slowed for illustration.';
+        if(caption.textContent!==message)caption.textContent=message;
+      }
+      const circuitObserver=new MutationObserver(updateFlow);circuitObserver.observe(lamp,{attributes:true,attributeFilter:['class']});circuitObserver.observe(lever,{attributes:true,attributeFilter:['d']});
+      path.addEventListener('change',updateFlow);media.addEventListener('change',updateFlow);updateFlow();
+    }
   }
   function start(){const sheet=document.querySelector('link[href*="preview-finish.css"]');if(sheet&&!sheet.href.includes('v=responsive-v2')){sheet.addEventListener('load',boot,{once:true});sheet.addEventListener('error',boot,{once:true});sheet.href='./preview-finish.css?v=responsive-v2';setTimeout(boot,1500);}else if(sheet&&!sheet.sheet){sheet.addEventListener('load',boot,{once:true});sheet.addEventListener('error',boot,{once:true});setTimeout(boot,1500);}else boot();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
