@@ -1,324 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tristan Tucker — Electrical Helper / Apprentice</title>
-  <meta name="description" content="Tristan Tucker is an electrical helper and apprentice in Swansea, Massachusetts: Tri-County electrical student, OSHA 10 and Hot Works certified, with low-voltage field experience. Projects, résumé and contact." />
-  <meta property="og:title" content="Tristan Tucker — Electrical Helper / Apprentice" />
-  <meta property="og:description" content="Projects, résumé and contact for an electrical helper and apprentice in Swansea, MA." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/project-switch-wall.jpg" />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="./base.css" />
-  <link rel="stylesheet" href="./style.css" />
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
+<title>Tristan Tucker — Electrical Helper / Apprentice</title>
+<meta name="description" content="Tristan Tucker, electrical helper/apprentice candidate in Swansea, Massachusetts. Training, projects, résumé and contact.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com"><link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+/* Modern Field Notebook v1. Existing content.js remains the editable content source. */
+:root{--bg:#f5f3ed;--surface:#fcfbf8;--soft:#ebe8de;--text:#252823;--muted:#62665d;--line:#25282326;--amber:#edb448;--ink:#232820;--paper:#f6f4ed;--body:clamp(1rem,.97rem + .15vw,1.0625rem);--small:clamp(.875rem,.83rem + .2vw,.9375rem);--label:clamp(.75rem,.72rem + .15vw,.8125rem);--heading:clamp(1.75rem,1.3rem + 1.4vw,2.75rem);--hero:clamp(3.5rem,2rem + 5vw,6.75rem);--s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.25rem;--s6:1.5rem;--s8:2rem;--s10:2.5rem;--s12:3rem;--s16:4rem;--s20:5rem;--s24:6rem}
+[data-theme=dark]{--bg:#181c17;--surface:#20251f;--soft:#292f27;--text:#f0f1e9;--muted:#bcc2b6;--line:#f0f1e92a}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:6rem}body{font:400 var(--body)/1.65 'General Sans',Arial,sans-serif;color:var(--text);background:var(--bg)}button,a{ -webkit-tap-highlight-color:transparent;transition:background 180ms,color 180ms,transform 180ms}button{font:inherit;color:inherit;cursor:pointer}button:active,.btn:active{transform:translateY(1px)}a{color:inherit;text-underline-offset:.25em}img,svg{display:block;max-width:100%}h1,h2,h3{line-height:1.1;text-wrap:balance}h2{font-size:var(--heading);font-weight:600;letter-spacing:-.045em}h3{font-size:clamp(1.125rem,1rem + .4vw,1.375rem);font-weight:600}p{max-width:65ch}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #b47a16;outline-offset:4px}[hidden]{display:none!important}.wrap{width:min(1200px,calc(100% - var(--s12)));margin-inline:auto}.muted{color:var(--muted)}.label{font-size:var(--label);font-weight:600;letter-spacing:.13em;text-transform:uppercase}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:var(--s3) var(--s5);gap:var(--s3);background:transparent;border:1px solid var(--line);border-radius:.375rem;text-decoration:none;font-size:var(--small);font-weight:600}.btn:hover{background:var(--soft)}.primary{background:var(--amber);color:#252318;border-color:transparent}.primary:hover{background:#f4c36a}.skip{position:absolute;top:-100px;left:var(--s4);z-index:100;background:var(--amber);color:#252318;padding:var(--s4)}.skip:focus{top:var(--s4)}header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}.header{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);min-height:80px}.brand{display:flex;align-items:center;gap:var(--s3);font-size:var(--small);font-weight:600;text-decoration:none}.brand svg{width:36px;height:36px}.brand small{display:block;font-size:var(--label);font-weight:400;color:var(--muted)}nav{display:flex;gap:var(--s6)}nav a{display:flex;align-items:center;min-height:44px;font-size:var(--small);text-decoration:none;color:var(--muted)}nav a:hover{color:var(--text)}.tools{display:flex;gap:var(--s2)}.iconbtn{min-width:44px;min-height:44px;background:transparent;border:1px solid var(--line);border-radius:.375rem;padding:var(--s2)}#menu{display:none}.hero{display:grid;grid-template-columns:1.02fr 1fr;align-items:center;gap:var(--s16);padding-block:var(--s20) var(--s16)}h1{font-size:var(--hero);font-weight:600;letter-spacing:-.075em;margin-block:var(--s5) var(--s6)}h1 span{display:block}.hero-copy{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s8)}.location{font-size:var(--small);color:var(--muted);margin-top:var(--s5)}.hero-photo{width:100%;height:420px;object-fit:cover;border-radius:.75rem;background:var(--soft)}figcaption{font-size:var(--label);color:var(--muted);margin-top:var(--s3)}.credentials{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line)}.credential{padding:var(--s6) var(--s4)}.credential:first-child{padding-left:0}.credential+.credential{border-left:1px solid var(--line);padding-left:var(--s8)}.credential strong,.credential span{display:block}.credential span{color:var(--muted);font-size:var(--small)}.section{padding-block:var(--s20)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:var(--s8);margin-bottom:var(--s10)}.section-head h2{margin-top:var(--s3)}.section-head>p{max-width:32ch;color:var(--muted)}.experience-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:var(--s12)}details{border-top:1px solid var(--line)}details:last-child{border-bottom:1px solid var(--line)}summary{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);list-style:none;cursor:pointer;padding:var(--s6) 0;min-height:100px}summary::-webkit-details-marker{display:none}summary strong{display:block;font-weight:600}summary small{display:block;color:var(--muted);font-size:var(--small);margin-top:var(--s2)}summary::after{content:'+';font-size:var(--heading)}details[open] summary::after{content:'−'}.bullets{padding:0 var(--s6) var(--s6);color:var(--muted)}.bullets li+li{margin-top:var(--s2)}.training{padding:var(--s8);background:var(--surface);border:1px solid var(--line);border-radius:.75rem;align-self:start}.training h3{margin-bottom:var(--s5)}.training article+article{margin-top:var(--s6);padding-top:var(--s6);border-top:1px solid var(--line)}.training small,.training p{display:block;font-size:var(--small);color:var(--muted);margin-top:var(--s2)}.chips{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s6)}.chip{display:inline-flex;align-items:center;min-height:44px;padding:var(--s2) var(--s3);border:1px solid var(--line);border-radius:.375rem;font-size:var(--small);text-decoration:none;background:transparent}.chip:hover{background:var(--soft)}.projects{background:var(--surface)}.filters{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s8)}.filter[aria-pressed=true]{background:var(--text);color:var(--bg)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s8)}.project{background:var(--bg);border:1px solid var(--line);border-radius:.75rem;overflow:hidden}.project img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--soft)}.project-body{padding:var(--s6)}.project h3{margin-block:var(--s3)}.project p{color:var(--muted);font-size:var(--small)}.project .btn{margin-top:var(--s5)}.project-meta{font-size:var(--label);color:var(--muted)}.lab{display:grid;grid-template-columns:1fr 1.2fr;gap:var(--s16);align-items:center}.lab h2{margin-block:var(--s4) var(--s6)}.panel{background:var(--ink);color:var(--paper);padding:var(--s6);border-radius:.75rem}.panel-top{display:flex;justify-content:space-between;gap:var(--s3)}.panel .label{color:#c1c6ba}.lamp-state{font-size:var(--label);font-weight:600;color:var(--amber)}.diagram{width:100%;height:auto;margin-block:var(--s5);color:#86917e}.diagram path,.diagram circle{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.diagram text{font:14px 'General Sans',Arial,sans-serif;fill:#c1c6ba}.diagram .active{stroke:var(--amber)}.diagram .lit{fill:var(--amber);stroke:var(--amber)}.switches{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}.switches button{min-height:48px;border:1px solid #ffffff44;background:#ffffff0a;color:var(--paper);border-radius:.375rem;font-size:var(--small);padding:var(--s3)}.switches button:hover{background:#ffffff1a}.path-control{display:flex;align-items:center;gap:var(--s3);min-height:48px;font-size:var(--small);margin-top:var(--s2)}input{width:18px;height:18px;accent-color:var(--amber)}.explanation{font-size:var(--small);color:#c1c6ba;min-height:3.3em}.note{font-size:var(--label);color:#c1c6ba;border-top:1px solid #ffffff28;padding-top:var(--s4);margin-top:var(--s4)}.about{display:grid;grid-template-columns:1fr 1.25fr;gap:var(--s16);border-top:1px solid var(--line)}.about h2{margin-top:var(--s3)}.about p+p{margin-top:var(--s5)}.contact{background:var(--ink);color:var(--paper);padding-block:var(--s16)}.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s16)}.contact h2{margin-block:var(--s4) var(--s6)}.contact p{color:#c1c6ba}.contact .btn:not(.primary){border-color:#ffffff55}.contact .btn:not(.primary):hover{background:#ffffff15}.contact-row{padding-block:var(--s4);border-bottom:1px solid #ffffff28}.contact-row dt{font-size:var(--label);color:#c1c6ba}.contact-row dd{margin-top:var(--s2);overflow-wrap:anywhere}footer{padding-block:var(--s6);font-size:var(--label);color:var(--muted)}.footer{display:flex;justify-content:space-between;gap:var(--s4)}.mobile-actions{display:none}dialog{width:min(960px,calc(100% - var(--s8)));max-height:90dvh;margin:auto;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:.75rem;padding:0}dialog::backdrop{background:#101410bd}.modal-head{display:flex;justify-content:space-between;align-items:start;gap:var(--s4);padding:var(--s6);border-bottom:1px solid var(--line)}.modal-head h2{font-size:clamp(1.25rem,1rem + 1vw,2rem);margin-top:var(--s2)}.modal-body{padding:var(--s6)}.gallery-image{width:100%;max-height:55dvh;object-fit:contain;background:var(--soft)}.gallery-controls{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);margin-top:var(--s4)}.thumbs{display:flex;gap:var(--s2);overflow:auto;padding:var(--s1);margin-top:var(--s4)}.thumb{flex:none;background:none;border:2px solid transparent;border-radius:.375rem;min-height:48px;padding:var(--s1)}.thumb[aria-pressed=true]{border-color:var(--amber)}.thumb img{width:64px;height:48px;object-fit:cover}.description p{margin-top:var(--s5);color:var(--muted)}.fallback{padding:var(--s8);background:var(--soft);color:var(--muted)}.modal-open{overflow:hidden}
+@media(max-width:800px){.hero{gap:var(--s8)}.experience-grid{gap:var(--s8)}nav{gap:var(--s4)}.brand small{display:none}.lab{gap:var(--s8)}}
+@media(max-width:700px){.wrap{width:calc(100% - var(--s8))}.header{min-height:72px}.brand svg{width:30px;height:30px}#menu{display:block}nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);padding:var(--s4);border-bottom:1px solid var(--line)}nav.open{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}nav a{padding:var(--s3);background:var(--surface)}.hero{grid-template-columns:1fr;padding-block:var(--s12);gap:var(--s8)}h1{font-size:clamp(3.5rem,15vw,5rem)}h1 span{display:inline}h1 span+span::before{content:' '}.hero-photo{height:300px}.credentials{grid-template-columns:1fr}.credential,.credential:first-child{padding:var(--s4) 0}.credential+.credential{border-left:0;border-top:1px solid var(--line);padding-left:0}.credential strong,.credential span{display:inline}.credential span{margin-left:var(--s2)}.section{padding-block:var(--s12)}.section-head{display:block;margin-bottom:var(--s8)}.section-head>p{margin-top:var(--s4);max-width:100%}.experience-grid,.lab,.about,.contact-grid{grid-template-columns:1fr;gap:var(--s8)}.grid{grid-template-columns:1fr}.training{padding:var(--s6)}.contact{padding-block:var(--s12)}.footer{display:block}footer{padding-bottom:calc(var(--s24) + env(safe-area-inset-bottom))}.mobile-actions{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:25;gap:var(--s3);padding:var(--s3) var(--s4);padding-bottom:max(var(--s3),env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}.mobile-actions .btn{flex:1}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="progress-track" aria-hidden="true"><span class="progress-bar" id="progress-bar"></span></div>
-
-  <header class="site-header" id="top">
-    <div class="wrap header-inner">
-      <a href="#top" class="brand" data-bind="brand" aria-label="Back to top">T. Tucker</a>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn btn-amber btn-sm" data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">Résumé</a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
-        <span></span><span></span>
-      </button>
-    </div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">Résumé (PDF)</a>
-    </nav>
-  </header>
-
-  <main id="main">
-
-    <!-- ============ HERO ============ -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span data-bind="title"></span><span class="eyebrow-sep" aria-hidden="true">·</span><span data-bind="location"></span></p>
-          <h1 id="hero-title" class="hero-title" data-bind="hero-title"></h1>
-          <p class="hero-tagline" data-bind="tagline"></p>
-          <p class="hero-summary" data-bind="hero-summary"></p>
-          <div class="hero-actions">
-            <a data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-dark">Résumé (PDF)</a>
-            <a data-bind="email-link" href="#" class="btn btn-amber">Email me</a>
-            <a data-bind="phone-link" href="#" class="btn btn-outline">Call <span data-bind="phone"></span></a>
-          </div>
-          <p class="status" data-bind="status"><span class="status-dot" aria-hidden="true"></span><span data-bind="status-text"></span></p>
-        </div>
-
-        <figure class="circuit-card">
-          <div class="circuit-head">
-            <span class="plate">3-WAY CIRCUIT · INTERACTIVE</span>
-            <span class="plate plate-live" id="lamp-state">LAMP OFF</span>
-          </div>
-          <svg id="circuit" class="circuit" viewBox="0 0 640 400" role="img" aria-label="Interactive three-way switch circuit. Flip either switch to turn the lamp on or off.">
-            <defs>
-              <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-                <feGaussianBlur stdDeviation="10" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-
-            <!-- source -->
-            <g class="sym source">
-              <circle cx="60" cy="300" r="26"/>
-              <path d="M48 300 q6 -12 12 0 t12 0" />
-              <text x="112" y="304" class="lbl">120 V</text>
-            </g>
-
-            <!-- neutral path (always drawn, never energized) -->
-            <path class="wire" d="M60 326 V372 H520 V330"/>
-            <text x="300" y="392" class="lbl">NEUTRAL</text>
-
-            <!-- hot: source -> S1 common -->
-            <path class="wire hot seg seg-a" d="M60 274 V120 H160"/>
-            <text x="110" y="108" class="lbl">HOT</text>
-
-            <!-- travelers S1 -> S2 -->
-            <path class="wire seg seg-t1" d="M226 92 H414"/>
-            <path class="wire seg seg-t2" d="M226 148 H414"/>
-            <text x="320" y="80" class="lbl">TRAVELER 1</text>
-            <text x="320" y="172" class="lbl">TRAVELER 2</text>
-
-            <!-- S2 common -> lamp -->
-            <path class="wire seg seg-b" d="M480 120 H520 V250"/>
-
-            <!-- SWITCH 1 -->
-            <g class="switch" id="sw1" tabindex="0" role="switch" aria-checked="false" aria-label="Switch one">
-              <rect class="hit" x="150" y="60" width="90" height="100" rx="6"/>
-              <circle class="term" cx="160" cy="120" r="5"/>
-              <circle class="term" cx="226" cy="92" r="5"/>
-              <circle class="term" cx="226" cy="148" r="5"/>
-              <line class="blade" x1="160" y1="120" x2="222" y2="92"/>
-              <text x="195" y="186" class="lbl">S1 · 3-WAY</text>
-            </g>
-
-            <!-- SWITCH 2 (mirrored) -->
-            <g class="switch" id="sw2" tabindex="0" role="switch" aria-checked="false" aria-label="Switch two">
-              <rect class="hit" x="400" y="60" width="90" height="100" rx="6"/>
-              <circle class="term" cx="480" cy="120" r="5"/>
-              <circle class="term" cx="414" cy="92" r="5"/>
-              <circle class="term" cx="414" cy="148" r="5"/>
-              <line class="blade" x1="480" y1="120" x2="418" y2="92"/>
-              <text x="445" y="186" class="lbl">S2 · 3-WAY</text>
-            </g>
-
-            <!-- LAMP -->
-            <g class="lamp" id="lamp">
-              <circle class="lamp-glow" cx="520" cy="290" r="40"/>
-              <circle class="lamp-body" cx="520" cy="290" r="40"/>
-              <path class="lamp-x" d="M492 262 L548 318 M548 262 L492 318"/>
-              <text x="588" y="294" class="lbl">LAMP</text>
-            </g>
-
-            <!-- hint -->
-            <text x="320" y="36" class="hint" id="circuit-hint">Tap either switch</text>
-          </svg>
-          <figcaption class="circuit-foot">Two 3-ways, one light — the same wall I wired at Tri-County, except this one you can flip from your phone.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============ CREDENTIALS TICKER ============ -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <span class="ticker-run">
-          <span>OSHA 10 Certified</span><i></i>
-          <span>Hot Works Certified</span><i></i>
-          <span>900 Hours of Hands-On Training</span><i></i>
-          <span>Tri-County Electrical Program</span><i></i>
-          <span>Low-Voltage Field Experience</span><i></i>
-          <span>Clean, Code-Compliant Workmanship</span><i></i>
-        </span>
-        <span class="ticker-run" aria-hidden="true">
-          <span>OSHA 10 Certified</span><i></i>
-          <span>Hot Works Certified</span><i></i>
-          <span>900 Hours of Hands-On Training</span><i></i>
-          <span>Tri-County Electrical Program</span><i></i>
-          <span>Low-Voltage Field Experience</span><i></i>
-          <span>Clean, Code-Compliant Workmanship</span><i></i>
-        </span>
-      </div>
-    </div>
-
-    <!-- ============ FACTS STRIP ============ -->
-    <section class="facts" aria-label="Quick facts">
-      <div class="wrap facts-row" data-list="facts"></div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section experience" id="experience" aria-labelledby="experience-title">
-      <div class="wrap exp-grid">
-        <div class="exp-main">
-          <div class="section-head">
-            <p class="index">01 / Experience</p>
-            <h2 id="experience-title" class="section-title">Panel schedule</h2>
-            <p class="section-lede">Every job I've held, newest first. Each one added a circuit.</p>
-          </div>
-          <ol class="schedule" role="list" data-list="experience"></ol>
-          <a class="btn btn-dark resume-cta" data-bind="resume-link" href="#" target="_blank" rel="noopener noreferrer">
-            Open full résumé (PDF)
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
-        </div>
-        <aside class="exp-side">
-          <h3 class="side-title">Education</h3>
-          <ul class="edu-list" role="list" data-list="education"></ul>
-          <h3 class="side-title">Certifications</h3>
-          <ul class="cert-list" role="list" data-list="certifications"></ul>
-          <h3 class="side-title">Skills</h3>
-          <ul class="skill-list" role="list" data-list="skills"></ul>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS ============ -->
-    <section class="section projects" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="index">02 / Projects</p>
-          <h2 id="projects-title" class="section-title">Work I've had my hands on</h2>
-          <p class="section-lede">School walls, shop benches and real service calls. Tap a card for the details and photos.</p>
-        </div>
-        <div class="filters" role="group" aria-label="Filter projects by category" data-list="filters"></div>
-        <div class="project-grid" data-list="projects">
-          <!-- Reserved spot for future panel-work photos -->
-          <article class="project panel-soon" id="panel-placeholder" aria-label="Panel work photos coming soon">
-            <div class="soon-media">
-              <svg class="soon-glyph" viewBox="0 0 96 96" aria-hidden="true">
-                <rect x="14" y="10" width="68" height="76" rx="6" fill="none" stroke="currentColor" stroke-width="3"/>
-                <line x1="26" y1="28" x2="70" y2="28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <line x1="26" y1="42" x2="56" y2="42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <line x1="26" y1="56" x2="62" y2="56" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <line x1="26" y1="70" x2="48" y2="70" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="70" cy="70" r="4" fill="currentColor"/>
-              </svg>
-              <span class="soon-badge"><span class="pulse-dot" aria-hidden="true"></span>Photos coming soon</span>
-            </div>
-            <div class="project-body">
-              <div class="project-meta">Electrical work</div>
-              <h3 class="project-title">Panel Work</h3>
-              <p class="project-summary">A reserved spot for my panel-work photos and project details — added as the work happens.</p>
-            </div>
-          </article>
-        </div>
-        <p class="empty" id="projects-empty" hidden>Nothing tagged that way yet — try another filter.</p>
-      </div>
-    </section>
-
-    <!-- ============ ABOUT ============ -->
-    <section class="section about" id="about" aria-labelledby="about-title">
-      <div class="wrap about-grid">
-        <div class="about-visual" id="about-visual">
-          <!-- filled by app.js: photo if provided, otherwise the legend drawing -->
-        </div>
-        <div class="about-copy">
-          <div class="section-head">
-            <p class="index">03 / About</p>
-            <h2 id="about-title" class="section-title">The short version</h2>
-          </div>
-          <div class="prose" data-list="about"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="index">04 / Contact</p>
-          <h2 id="contact-title" class="section-title">Need a hand on a job?</h2>
-          <p class="section-lede">Email is fastest. I answer the same day.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-main">
-            <a class="contact-email" data-bind="email-link" href="#"><span data-bind="email"></span></a>
-            <button class="btn btn-outline btn-sm copy-btn" id="copy-email" type="button">Copy email</button>
-            <ul class="contact-meta" role="list">
-              <li data-bind="phone-item"><span class="meta-k">Phone</span><a data-bind="phone-link" href="#"><span data-bind="phone"></span></a></li>
-              <li><span class="meta-k">Based in</span><span data-bind="location"></span></li>
-              <li><span class="meta-k">Looking for</span><span>Helper / apprentice hours toward a MA license</span></li>
-            </ul>
-          </div>
-          <div class="contact-side">
-            <h3 class="side-title">Find me online</h3>
-            <ul class="social-list" role="list" data-list="socials"></ul>
-            <p class="social-empty" id="social-empty" hidden>Social links coming soon.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <span><span data-bind="name"></span> · <span data-bind="location"></span></span>
-      <span>© <span id="year"></span></span>
-      <a href="#top">Back to top ↑</a>
-    </div>
-  </footer>
-
-  <!-- Project detail modal -->
-  <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
-    <div class="modal-inner">
-      <button class="modal-close" id="modal-close" aria-label="Close project">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-      </button>
-      <div class="modal-media">
-        <img id="modal-img" alt="" />
-        <div class="modal-arrows">
-          <button class="arrow" id="modal-prev" aria-label="Previous photo">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-          </button>
-          <span class="modal-counter" id="modal-counter"></span>
-          <button class="arrow" id="modal-next" aria-label="Next photo">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-          </button>
-        </div>
-        <button class="modal-zoom" id="modal-zoom" aria-label="Expand photo">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-          Expand
-        </button>
-        <div class="modal-thumbs" id="modal-thumbs"></div>
-      </div>
-      <div class="modal-body">
-        <p class="index" id="modal-meta"></p>
-        <h3 class="modal-title" id="modal-title"></h3>
-        <div class="prose" id="modal-desc"></div>
-        <ul class="tag-row" role="list" id="modal-tags"></ul>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Full-photo lightbox -->
-  <dialog class="lightbox" id="lightbox" aria-label="Expanded photo">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close photo">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
-    <figure class="lightbox-figure">
-      <img id="lightbox-img" alt="" />
-      <figcaption class="lightbox-cap" id="lightbox-cap"></figcaption>
-    </figure>
-  </dialog>
-
-  <script src="./content.js"></script>
-  <script src="./app.js" defer></script>
-</body>
-</html>
+<body id="top"><a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap header"><a class="brand" href="#top"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M10 12h20M20 12v17M12 21h16M26 21v8" stroke="currentColor" stroke-width="2"/></svg><span>Tristan Tucker<small>Electrical helper / apprentice</small></span></a><nav id="navigation" aria-label="Main navigation"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><div class="tools"><button class="iconbtn" id="theme" aria-label="Switch color theme">◐</button><button class="iconbtn" id="menu" aria-expanded="false" aria-controls="navigation">Menu</button></div></div></header>
+<main id="main">
+<section class="wrap hero"><div><p class="label muted">Electrical helper / apprentice</p><h1><span>Tristan</span><span>Tucker.</span></h1><p class="hero-copy">Low-voltage field experience. Currently enrolled in Tri-County’s electrical program. Seeking a helper/apprentice opportunity with a Massachusetts electrical contractor.</p><div class="actions"><a class="btn primary" data-email>Email Tristan ↗</a><a class="btn" data-resume>View résumé ↗</a><a class="btn" href="#projects">See my work ↓</a></div><p class="location" id="location"></p></div><figure><img class="hero-photo" src="assets/img/IMG_3290.jpeg" alt="Three-way and four-way switching practice wall from Tristan’s Tri-County project" width="1200" height="1000" fetchpriority="high" decoding="async"><figcaption>From the practice wall · Tri-County electrical program</figcaption></figure></section>
+<div class="wrap credentials"><div class="credential"><strong>OSHA 10-hour</strong><span>Safety training</span></div><div class="credential"><strong>Tri-County</strong><span>Electrical program</span></div><div class="credential"><strong>900 hours</strong><span>MTTI technical training</span></div></div>
+<section class="wrap section" id="experience"><div class="section-head"><div><p class="label muted">01 / Experience & training</p><h2>Building a practical foundation.</h2></div><p>Every role, newest first. Open a section for the work behind the title.</p></div><div class="experience-grid"><div><div id="experience-list"></div><div class="chips" id="skills"></div><div class="actions"><a class="btn" data-resume>Open full résumé (PDF) ↗</a></div></div><aside class="training" id="training"><h3>Training notebook</h3><div id="education"></div><article><strong>Credentials</strong><p>OSHA 10-hour training · Hot Works · Certified PC Pro · AP Computer Science Award</p></article></aside></div></section>
+<section class="section projects" id="projects"><div class="wrap"><div class="section-head"><div><p class="label muted">02 / Selected work</p><h2>Work I’ve had my hands on.</h2></div><p>School walls, shop benches, and field calls. Explore the actual projects and photographs.</p></div><div class="filters" id="filters" role="group" aria-label="Filter projects"></div><div class="grid" id="project-grid"></div><p class="muted" id="count" role="status" style="margin-top:var(--s5)"></p></div></section>
+<section class="wrap section lab" id="circuit-lab"><div><p class="label muted">Interactive / Switching logic</p><h2>Two switches.<br>One light.</h2><p class="muted">A small demonstration inspired by the switching wall I wired at Tri-County. Flip either switch, then highlight the path to see what changes.</p><a class="btn" href="#projects" style="margin-top:var(--s6)">Explore the real projects ↑</a></div><div class="panel"><div class="panel-top"><span class="label">3-way circuit</span><span id="lamp-state" class="lamp-state" role="status">LAMP OFF</span></div><svg class="diagram" viewBox="0 0 520 260" role="img" aria-labelledby="diagram-title"><title id="diagram-title">Simplified switching logic: matching traveler selections complete the lamp circuit</title><text x="20" y="28">HOT</text><text x="20" y="245">NEUTRAL</text><path id="hot" d="M22 130H110"/><path id="t1" d="M165 95H315"/><path id="t2" d="M165 165H315"/><path id="load" d="M370 130H422"/><path id="neutral" d="M22 220H460V166"/><path id="lever1" d="M110 130L165 95"/><path id="lever2" d="M370 130L315 165"/><circle cx="110" cy="130" r="5"/><circle cx="165" cy="95" r="5"/><circle cx="165" cy="165" r="5"/><circle cx="315" cy="95" r="5"/><circle cx="315" cy="165" r="5"/><circle cx="370" cy="130" r="5"/><circle id="lamp" cx="460" cy="130" r="36"/><path d="M438 108L482 152M482 108L438 152"/><text x="108" y="65">S1</text><text x="360" y="65">S2</text><text x="190" y="80">TRAVELER 1</text><text x="190" y="192">TRAVELER 2</text></svg><div class="switches"><button id="switch1">Flip switch 1 · T1</button><button id="switch2">Flip switch 2 · T2</button></div><label class="path-control"><input type="checkbox" id="path">Highlight connected path</label><p class="explanation" id="explanation" aria-live="polite"></p><p class="note">Simplified switching-logic demonstration only. Not installation instructions or a complete wiring diagram.</p></div></section>
+<section class="wrap section about" id="about"><div><p class="label muted">03 / The short version</p><h2>A practical start.<br>A skilled future.</h2></div><div><p>I’m Tristan Tucker, an electrical helper/apprentice candidate combining electrical training with low-voltage field experience and a hands-on mechanical background.</p><p class="muted">I’m looking for an opportunity to keep learning, contribute to a crew, and build experience toward a Massachusetts electrical license. My 900 hours of MTTI technical training are separate from my current Tri-County electrical program.</p></div></section>
+<section class="contact" id="contact"><div class="wrap contact-grid"><div><p class="label">04 / Contact</p><h2>Need a hand<br>on your crew?</h2><p>Let’s talk about a helper/apprentice opportunity.</p><div class="actions"><a class="btn primary" data-email>Email Tristan ↗</a><a class="btn" data-phone>Call Tristan ↗</a><a class="btn" data-resume>Résumé (PDF) ↗</a></div></div><dl id="contact-details"></dl></div></section>
+</main><footer><div class="wrap footer"><p>Tristan Tucker · Modern Field Notebook</p><p>Preview redesign · baseline v1</p><a href="#top">Back to top ↑</a></div></footer><div class="mobile-actions" aria-label="Quick actions"><a class="btn" data-resume>Résumé ↗</a><a class="btn primary" data-email>Email Tristan ↗</a></div>
+<dialog id="project-dialog" aria-labelledby="modal-title"><div class="modal-head"><div><p class="label muted" id="modal-meta"></p><h2 id="modal-title"></h2></div><button class="iconbtn" id="close-dialog" aria-label="Close project">×</button></div><div class="modal-body" id="modal-body"></div></dialog>
+<script src="./content.js"></script>
+<script>
+'use strict';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const S=window.SITE;
+function el(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+function img(src,alt,cls){const n=el('img',cls);n.src=src;n.alt=alt;n.width=1200;n.height=800;n.loading='lazy';n.decoding='async';n.addEventListener('error',()=>{n.replaceWith(el('div','fallback','Photograph unavailable. Please try again later.'))},{once:true});return n}
+const media=matchMedia('(prefers-color-scheme:dark)');let manual=false;
+function theme(dark){document.documentElement.dataset.theme=dark?'dark':'light';$('#theme').setAttribute('aria-label','Switch to '+(dark?'light':'dark')+' mode')}
+theme(media.matches);$('#theme').onclick=()=>{manual=true;theme(document.documentElement.dataset.theme!=='dark')};media.addEventListener('change',e=>{if(!manual)theme(e.matches)});
+$('#menu').onclick=()=>{const open=$('#navigation').classList.toggle('open');$('#menu').setAttribute('aria-expanded',String(open))};function closeMenu(){$('#navigation').classList.remove('open');$('#menu').setAttribute('aria-expanded','false')}$$('nav a').forEach(a=>a.onclick=closeMenu);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+$$('[data-email]').forEach(a=>a.href='mailto:'+S.contact.email+'?subject=Electrical%20helper%20opportunity');$$('[data-phone]').forEach(a=>a.href='tel:'+S.contact.phone.replace(/[^+0-9]/g,''));$$('[data-resume]').forEach(a=>{a.href=S.contact.resumeFile;a.target='_blank';a.rel='noopener noreferrer'});$('#location').textContent=S.location+' · '+S.status.text;
+S.experience.forEach((x,i)=>{const d=el('details');d.id='experience-'+i;const summary=el('summary'),text=el('span');text.append(el('strong','',x.role),el('small','',x.company+' · '+x.dates));summary.append(text);const ul=el('ul','bullets');x.bullets.forEach(t=>ul.append(el('li','',t)));d.append(summary,ul);$('#experience-list').append(d)});
+S.education.forEach(x=>{const a=el('article');a.append(el('strong','',x.program),el('small','',x.school),el('small','',x.dates),el('p','',x.note));$('#education').append(a)});
+const skillLinks=[['Switching','#circuit-lab'],['Conduit & layout','#projects'],['Low-voltage troubleshooting','#experience-4'],['Mechanical aptitude','#experience-2'],['Safety & training','#training']];skillLinks.forEach(([text,href])=>{const a=el('a','chip',text+' ↗');a.href=href;a.onclick=()=>{const target=document.getElementById(href.slice(1));if(target instanceof HTMLDetailsElement)target.open=true};$('#skills').append(a)});
+[['BASED IN',S.location],['EMAIL',S.contact.email],['PHONE',S.contact.phone],['LOOKING FOR','Helper / apprentice opportunities toward a MA license']].forEach(([k,v])=>{const row=el('div','contact-row'),dd=el('dd');if(k==='EMAIL'||k==='PHONE'){const a=el('a','',v);a.href=k==='EMAIL'?'mailto:'+v:'tel:'+v.replace(/[^+0-9]/g,'');dd.append(a)}else dd.textContent=v;row.append(el('dt','',k),dd);$('#contact-details').append(row)});
+const dialog=$('#project-dialog');let trigger=null;
+$('#close-dialog').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');if(trigger)trigger.focus()});dialog.addEventListener('click',e=>{if(e.target===dialog){const b=dialog.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close()}});
+function openProject(p){trigger=document.activeElement;$('#modal-title').textContent=p.title;$('#modal-meta').textContent=p.meta;const host=$('#modal-body');host.replaceChildren();const photos=(p.galleryImages&&p.galleryImages.length?p.galleryImages:p.images)||[];let current=0;
+if(photos.length){const imageHost=el('div'),cap=el('p','muted'),controls=el('div','gallery-controls'),prev=el('button','btn','← Previous'),next=el('button','btn','Next →'),count=el('span','muted'),thumbs=el('div','thumbs');const buttons=[];function show(i){current=(i+photos.length)%photos.length;imageHost.replaceChildren(img(photos[current],p.title+' — project photograph '+(current+1),'gallery-image'));cap.textContent=p.title+' · '+p.meta+' · Photo '+(current+1);count.textContent=(current+1)+' / '+photos.length;buttons.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===current)))}photos.forEach((src,i)=>{const b=el('button','thumb');b.type='button';b.setAttribute('aria-label','Show project photograph '+(i+1));b.append(img(src,'',''));b.onclick=()=>show(i);buttons.push(b);thumbs.append(b)});prev.onclick=()=>show(current-1);next.onclick=()=>show(current+1);controls.append(prev,count,next);controls.hidden=photos.length<2;thumbs.hidden=photos.length<2;host.append(imageHost,cap,controls,thumbs);show(0)}
+const desc=el('div','description');p.description.forEach(t=>desc.append(el('p','',t)));host.append(desc);const tags=el('div','chips');p.tags.forEach(t=>tags.append(el('span','chip',t)));host.append(tags);dialog.showModal();document.body.classList.add('modal-open')}
+const categories=['All work',...new Set(S.projects.map(p=>p.category))];function render(category='All work'){$('#project-grid').replaceChildren();const projects=S.projects.filter(p=>category==='All work'||p.category===category);projects.forEach((p,i)=>{const card=el('article','project');const actual=p.galleryImages&&p.galleryImages.length?p.galleryImages[0]:p.images[0];card.append(img(actual,p.title+' — '+p.meta,''));const body=el('div','project-body');body.append(el('span','label muted',p.category),el('h3','',p.title),el('p','',p.summary),el('p','project-meta',p.meta));const button=el('button','btn','Explore project ↗');button.type='button';button.setAttribute('aria-label','Explore '+p.title);button.onclick=()=>openProject(p);body.append(button);card.append(body);$('#project-grid').append(card)});$('#count').textContent=projects.length+' projects shown';$$('#filters button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)))}categories.forEach(c=>{const b=el('button','chip filter',c);b.dataset.category=c;b.type='button';b.onclick=()=>render(c);$('#filters').append(b)});render();
+let s1=0,s2=1;function circuit(){const on=s1===s2,path=$('#path').checked;$('#lever1').setAttribute('d','M110 130L165 '+(s1===0?95:165));$('#lever2').setAttribute('d','M370 130L315 '+(s2===0?95:165));$('#switch1').textContent='Flip switch 1 · T'+(s1+1);$('#switch2').textContent='Flip switch 2 · T'+(s2+1);$('#switch1').setAttribute('aria-label','Switch 1 selects traveler '+(s1+1)+'. Activate to change.');$('#switch2').setAttribute('aria-label','Switch 2 selects traveler '+(s2+1)+'. Activate to change.');$('#lamp').classList.toggle('lit',on);$('#lamp-state').textContent=on?'LAMP ON':'LAMP OFF';$$('.diagram .active').forEach(n=>n.classList.remove('active'));if(path){['#hot','#lever1','#t'+(s1+1)].forEach(s=>$(s).classList.add('active'));if(on)['#lever2','#load','#neutral'].forEach(s=>$(s).classList.add('active'))}$('#explanation').textContent=on?'Both switches select traveler '+(s1+1)+'. The circuit is complete and the lamp is on.':'The switches select different travelers. The circuit is open and the lamp is off.'}$('#switch1').onclick=()=>{s1=1-s1;circuit()};$('#switch2').onclick=()=>{s2=1-s2;circuit()};$('#path').onchange=circuit;circuit();
+</script></body></html>
